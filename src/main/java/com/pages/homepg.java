@@ -1,17 +1,22 @@
 package com.pages;
 
+import java.time.Duration;
 import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class homepg {
 	 private WebDriver driver;
-	 private By home=By.xpath("\"//*[text()='Get Started']");
-	 private By dropodown=By.xpath("//div[@id='navbarCollapse']/div/div/a[@class='nav-link dropdown-toggle']");
+	 private By home=By.xpath("//*[text()='Get Started']");
+	 private By dropodown=By.xpath("//*[@id='navbarCollapse']/div[1]/div/a");
 	 private By Arrays=By.xpath("//*[text()='Arrays']");
-	 private By Linkedlist=By.xpath("//*[text()='Linked List']");
+	 private By Linkedlist=By.xpath("//*[@id='navbarCollapse']/div[1]/div/div/a[2]");
 	 private By Stack=By.xpath("//*[text()='Stack']");
 	 private By Queue=By.xpath("//*[text()='Queue']");
 	 private By Tree=By.xpath("//*[text()='Tree']");
@@ -30,19 +35,24 @@ public class homepg {
 		 
 	 }
      public void dropdownclick() {
-    	 driver.findElement(dropodown).click();
+     driver.findElement(dropodown).click();
+ 
+     driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+     ///html/body/div[2]
+    	
+    	 
      }
      public String dropdown_validation() {
-    	 dropdownclick();
+    	 
     	 String str= driver.findElement(Arrays).getText();
+    	 System.out.println("dropdown data"+str);
     	 return str;
     	 }
      public String error_msg() {
-    	 dropdownclick();
-    	 WebElement error=driver.findElement(Linkedlist);
-    	 error.click();
-    	 String error_message=error.getAttribute("error");
-    	 return error_message;
+    	 driver.findElement(Stack).click();
+    	 String errodata=driver.findElement(By.xpath("/html/body/div[2]")).getText();
+    	 System.out.println("error message"+errodata);
+    	 return errodata ;
     	 }
      public void signin() {
     	 WebElement Signin=driver.findElement(signin);
@@ -61,18 +71,42 @@ public class homepg {
      }
      public String dropdowndata() {
     	 dropdownclick();
-    	 ArrayList<String> data=new ArrayList<>();
+    	ArrayList<String> data=new ArrayList<>();
     	 data.add("Arrays");
     	 data.add("Linkelist");
     	 data.add("Stack");
     	 data.add("Queue");
     	 data.add("Tree");
     	 data.add("Graph");
-    	 String str=data.getFirst();
+    	 String str = null;
+    	 for(String str1:data) {
+    		 str=str1;
+    		 System.out.println("data in dropdown"+str);
+    		 
+    	 }
+    	 
+       /*List<WebElement> strele= driver.findElements(dropodown);
+       for(WebElement data1:strele) {
+    	   if(data1.getText().equals("Stack")) {
+    		   data1.click();
+    	   }
+    	   
+       }
+    	 */
+    	 /*Actions action=new Actions(driver);
+    	 action.moveToElement("Stack").click();*/
+    	 /*Random random=new Random();
+    	 char strele=random.toString().charAt(3);
+    	 System.out.println(strele);*/
+    	 
     	 return str;
     	
     	 
      }
-     
+	public void dropdowndataclick() {
+		dropdownclick();
+	
+		
+	}
     
 }

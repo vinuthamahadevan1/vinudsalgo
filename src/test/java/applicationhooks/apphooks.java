@@ -1,5 +1,6 @@
 package applicationhooks;
 
+
 import java.util.Properties;
 
 import org.openqa.selenium.OutputType;
@@ -8,13 +9,13 @@ import org.openqa.selenium.WebDriver;
 
 import com.utility.configreader;
 
-import Factory.driverfactory;
+import Factory.Driverfactory;
 import io.cucumber.java.After;
 import io.cucumber.java.Before;
 import io.cucumber.java.Scenario;
 
 public class apphooks {
-private driverfactory driverfactory;
+private Driverfactory driverfactory;
 private WebDriver driver;
 private configreader Configreader;
 Properties prop;
@@ -27,7 +28,7 @@ public void getproperty() {
 @Before(order=1)
 public void launchbrowser() {
 	String browsername=prop.getProperty("browser");
-	driverfactory=new driverfactory();
+	driverfactory=new Driverfactory();
 	driver=driverfactory.init_driver(browsername);
 	
 }

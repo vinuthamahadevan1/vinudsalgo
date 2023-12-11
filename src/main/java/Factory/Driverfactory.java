@@ -7,7 +7,7 @@ import org.openqa.selenium.safari.SafariDriver;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 
-public class driverfactory {
+public class Driverfactory {
 	public WebDriver driver;
 	public static ThreadLocal<WebDriver>tlDriver=new ThreadLocal<>();
 	public WebDriver init_driver(String browser) {
@@ -15,6 +15,7 @@ public class driverfactory {
 		if(browser.equals("chrome")) {
 		    WebDriverManager.chromedriver().setup();
 			tlDriver.set(new ChromeDriver());
+			System.out.println("got chrome browser");
 		}
 		else if(browser.equals("firefox")) {
 			WebDriverManager.firefoxdriver().setup();

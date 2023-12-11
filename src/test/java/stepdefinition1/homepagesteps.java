@@ -2,16 +2,18 @@ package stepdefinition1;
 
 import com.pages.homepg;
 
-import Factory.driverfactory;
+import Factory.Driverfactory;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 
 public class homepagesteps {
-	private homepg Homepg=new homepg(driverfactory.getDriver());
+	private homepg Homepg=new homepg(Driverfactory.getDriver());
 	@Given("The user opens Home Page")
 	public void the_user_opens_home_page() {
-		driverfactory.getDriver().get("https://dsportalapp.herokuapp.com/home");
+		System.out.println("got driver");
+		Driverfactory.getDriver().get("https://dsportalapp.herokuapp.com");
+		
 	}
 
 	@When("The user clicks Data Structures drop down")
@@ -24,6 +26,7 @@ public class homepagesteps {
 
 	@Then("user should see  panes with different data strucures and different entries")
 	public void user_should_see_panes_with_different_data_strucures_and_different_entries() {
+		Homepg.click_home();
 		Homepg.dropdown_validation();
 		Homepg.dropdowndata();
 	    
@@ -42,6 +45,7 @@ public class homepagesteps {
 
 	@When("The user clicks {string}")
 	public void the_user_clicks(String string) {
+		Homepg.click_home();
 		Homepg.signin();
 	    
 	}
